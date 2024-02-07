@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
 
     while (true) {
         len = sizeof(cliaddr);
-        if (accept(listenfd, (SA*) &cliaddr, &len) == -1)
+        if ( (connfd = accept(listenfd, (SA*) &cliaddr, &len)) == -1)
             handle_errors("Cannot accept connection.\n");
         
         bzero(buf, sizeof(buf));
@@ -34,8 +34,8 @@ int main(int argc, char** argv) {
 
         ticks = time(NULL);
         snprintf(buf, sizeof(buf), "%.24s\r\n", ctime(&ticks));
-        
-        if (write(connfd, buf, sizeof(buf)) == -1)
+         
+        if (write(connfd, buf, strlen(buf)) == -1)
             handle_errors("write error.\n");
         
         if (close(connfd) == -1)

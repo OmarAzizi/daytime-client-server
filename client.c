@@ -1,16 +1,4 @@
-#include <netinet/in.h>
-#include <stdio.h>
-#include <strings.h>
-#include <sys/socket.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <stdlib.h>
-#include <syscall.h>
-
-#define MAXLINE             4096
-#define SA   struct     sockaddr
-#define EXIT_FALIURE           1
-#define EXIT_SUCCESS           0
+#include "common.h"
 
 int main(int argc, char** argv) {
     int sockfd, n;
